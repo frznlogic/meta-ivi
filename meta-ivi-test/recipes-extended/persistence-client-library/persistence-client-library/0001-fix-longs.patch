@@ -1,0 +1,24 @@
+commit d97c4ce675ad9400bc4d846e05ca6eb5af34640e
+Author: Oscar Andreasson <oscar.andreasson@pelagicore.com>
+Date:   Thu Mar 15 11:01:13 2018 +0100
+
+    persistence_client_library_benchmark.c:
+    
+    Fix compilation on 32-bit cpu's, long long and long are different datatypes
+    on 32-bit but not 64-bit cpu's.
+    
+    Signed-off-by: Oscar Andreasson <oscar.andreasson@pelagicore.com>
+
+diff --git a/test/persistence_client_library_benchmark.c b/test/persistence_client_library_benchmark.c
+index 900a6ec..579a073 100644
+--- a/test/persistence_client_library_benchmark.c
++++ b/test/persistence_client_library_benchmark.c
+@@ -167,7 +167,7 @@ void read_benchmark(int numLoops)
+ void write_benchmark(int numLoops)
+ {
+    int ret = 0, i = 0;
+-   long duration = 0,  size = 0;
++   long long duration = 0,  size = 0;
+    struct timespec readStart, readEnd;
+    char key[128] = { 0 };
+    unsigned char buffer[7168] = {0};   // 7kB

@@ -4,8 +4,10 @@
 #LOCALSTATEDIR
 #localstatedir
 FILESEXTRAPATHS_append := ":${THISDIR}/${PN}"
-SRC_URI_append += " file://${BPN}_t.inc \
-    "
+SRC_URI_append += " \
+    file://${BPN}_t.inc \
+    file://0001-fix-longs.patch \
+"
 
 EXTRA_OECONF += " --enable-tests "
 
